@@ -25,4 +25,14 @@ function countAllElementsOccurrences(yamsInputNumbers) {
     return numOccurrencesByNumber;
 }
 
-module.exports = { countElementOccurrences, countAllElementsOccurrences};
+function isBrelan(occurrences) {
+    for (let key of occurrences) {
+        if (occurrences[key] === 3) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+module.exports = { countElementOccurrences, countAllElementsOccurrences, isBrelan};
