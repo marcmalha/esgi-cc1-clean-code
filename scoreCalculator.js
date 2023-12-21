@@ -3,14 +3,26 @@ function countElementOccurrences(yamsInputNumbers, number) {
     let numOccurrences = 1;
     let i = 0;
 
-    while (i < sortedNumbers.length - 1 && sortedNumbers[i] != number) {
+    while (i < sortedNumbers.length && sortedNumbers[i] !== number) {
         ++i;
     }
 
-    while (i < sortedNumbers.length - 1 && sortedNumbers[i] == sortedNumbers[i+1]) {
+    while (i < sortedNumbers.length - 1 && sortedNumbers[i] === sortedNumbers[i+1]) {
         ++numOccurrences;
         ++i;
     };
 
     return numOccurrences;
 }
+
+function countAllElementsOccurrences(yamsInputNumbers) {
+    const numOccurrencesByNumber = Object.fromEntries(yamsInputNumbers.map(number => [number, 0]));
+
+    for (let i = 0; i < yamsInputNumbers.length; ++i) {
+        numOccurrencesByNumber[`${yamsInputNumbers[i]}`] = countElementOccurrences(yamsInputNumbers, yamsInputNumbers[i]);
+    }
+
+    return numOccurrencesByNumber;
+}
+
+module.exports = { countElementOccurrences, countAllElementsOccurrences};
